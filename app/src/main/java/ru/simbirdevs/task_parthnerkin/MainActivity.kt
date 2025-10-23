@@ -1,11 +1,9 @@
 package ru.simbirdevs.task_parthnerkin
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import ru.simbirdevs.task_parthnerkin.ui.components.MainScreen

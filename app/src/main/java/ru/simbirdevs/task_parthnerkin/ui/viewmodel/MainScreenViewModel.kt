@@ -2,44 +2,43 @@ package ru.simbirdevs.task_parthnerkin.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.simbirdevs.task_parthnerkin.data.Category
 import ru.simbirdevs.task_parthnerkin.data.ConferenceData
-import ru.simbirdevs.task_parthnerkin.data.ImageData
-import ru.simbirdevs.task_parthnerkin.ui.UiState
+import ru.simbirdevs.task_parthnerkin.data.repo.ConferenceRepository
+import javax.inject.Inject
 
-class MainScreenViewModel() : ViewModel() {
-    private val _conferences = MutableStateFlow<UiState>(UiState(emptyList()))
-    val conferences: StateFlow<UiState> = _conferences.asStateFlow()
+class MainScreenViewModel @Inject constructor(
+    private val conferenceRepository: ConferenceRepository
+) : ViewModel() {
+    private val _conferences = MutableStateFlow<List<ConferenceData>>(emptyList())
+    val conferences: StateFlow<List<ConferenceData>> = _conferences.asStateFlow()
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
     init {
         loadConferences()
     }
 
-    private fun loadConferences() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _conferences.value = UiState(conferenceList = getConferenceList())
-        }
-    }
+    fun loadConferences() {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                _errorMessage.value = null
 
-    private fun getConferenceList(): List<ConferenceData> {
-        return (0..10).map {
-            ConferenceData(
-                id = "$it",
-                conferenceName = "Name $it",
-                conferenceFormat = "Format $it",
-                conferenceStatusTitle = "Status title $it",
-                image = listOf(ImageData("https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/33/33acc36c9e8bcb552429e05b1ecd721bcc321dec_full.jpg")),
-                startDate = "2025-03-$it",
-                endDate = "2025-03-$it",
-                country = "Country $it",
-                city = "City $it",
-                category = listOf(Category("Category $it")),
-            )
+                _conferences.value = conferenceRepository.getAllConferences()
+
+            } catch (e: Exception) {
+                _errorMessage.value = "Failed to load conferences: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
         }
     }
 }
