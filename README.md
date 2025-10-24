@@ -5,7 +5,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/ModernBookLibraryTeam/Modern-Book-Library)
 ![GitHub forks](https://img.shields.io/github/forks/ModernBookLibraryTeam/Modern-Book-Library?style=social)
 ![GitHub Repo stars](https://img.shields.io/github/stars/ModernBookLibraryTeam/Modern-Book-Library?style=social)
-<p>Приложение представляет собой экран со списком конференций. Список конференций сгруппирован по месяцам, на экране указаны место, страна и даты проведения конференции и ее статус, в случае если она была отменена. 
+<p>Приложение представляет собой экран со списком конференций. Список сгруппирован по месяцам, указаны город, страна, дата проведения конференции и ее статус, в случае если она была отменена. 
 Функционал разрабатывался под ОС Android в рамках тестового задания для Партнеркин.</p>
 <p>Использовались следующие технологии:</p>
 <li>Архитектурный паттерг MVVM</li>
