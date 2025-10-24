@@ -1,12 +1,6 @@
 package ru.simbirdevs.task_parthnerkin.utils
 
 object Dates {
-    fun dateValidation(date: String):String {
-        val dateStr = date.split("-")
-        val formattedString = "${month(dateStr[1])}, ${dateStr[2]}"
-        return formattedString
-    }
-
     fun month(number: String): String {
         return when (number) {
             "01" -> "Январь"
@@ -21,6 +15,24 @@ object Dates {
             "10" -> "Октябрь"
             "11" -> "Ноябрь"
             "12" -> "Декабрь"
+            else -> ""
+        }
+    }
+
+    fun monthEnglish(number: String): String {
+        return when (number) {
+            "01" -> "JUN"
+            "02" -> "FEB"
+            "03" -> "MAR"
+            "04" -> "APR"
+            "05" -> "MAY"
+            "06" -> "JUN"
+            "07" -> "JUL"
+            "08" -> "AUG"
+            "09" -> "SEP"
+            "10" -> "OCT"
+            "11" -> "NOV"
+            "12" -> "DEC"
             else -> ""
         }
     }

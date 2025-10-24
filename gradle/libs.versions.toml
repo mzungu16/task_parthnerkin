@@ -13,6 +13,10 @@ graphicsRef = "1.1.0"
 coilRef = "2.7.0"
 dagger2 = "2.57.2"
 daggerCompiler = "2.57.2"
+gson = "2.13.2"
+retrofit = "3.0.0"
+okHttp = "4.12.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,6 +38,11 @@ androidx-graphics = { group = "androidx.graphics", name = "graphics-shapes", ver
 image-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilRef" }
 android-dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger2" }
 android-dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "daggerCompiler" }
+android-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+android-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+android-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+android-okHttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp" }
+android-okHttp-inter = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

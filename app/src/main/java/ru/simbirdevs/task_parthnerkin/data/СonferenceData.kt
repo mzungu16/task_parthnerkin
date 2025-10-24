@@ -1,22 +1,37 @@
 package ru.simbirdevs.task_parthnerkin.data
 
+
+data class Root(
+    val error: Any?,
+    val data: Data
+)
+
+data class Data(
+    val counts: Int,
+    val result: List<Result>
+)
+
+data class Result(
+    val view_type: Int,
+    val conference: ConferenceData
+)
 data class ConferenceData(
     val id: String = "",
-    val conferenceName: String = "",
-    val conferenceFormat: String = "",
-    val conferenceStatusTitle: String = "",
-    val image: List<ImageData>,
-    val startDate: String = "",
-    val endDate: String = "",
+    val name: String = "",
+    val format: String = "",
+    val status_title: String = "",
+    val image: ImageData,
+    val start_date: String = "",
+    val end_date: String = "",
     val country: String = "",
     val city: String = "",
-    val category: List<Category>,
+    val categories: List<Category>,
 )
 
 data class Category(
-    val categoryName: String = "",
+    val name: String = "",
 )
 
 data class ImageData(
-    val imageUrl: String = "",
+    val url: String = "",
 )

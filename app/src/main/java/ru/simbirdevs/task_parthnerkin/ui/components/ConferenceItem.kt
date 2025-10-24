@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.simbirdevs.task_parthnerkin.R
 import ru.simbirdevs.task_parthnerkin.data.ConferenceData
-import ru.simbirdevs.task_parthnerkin.data.MockData
 
 @Composable
 fun ConferenceItem(
@@ -49,7 +48,7 @@ fun ConferenceItem(
                 .wrapContentHeight()
         ) {
             Text(
-                text = conference.conferenceName,
+                text = conference.name,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(start = 10.dp, top = 10.dp, end = 10.dp)
             )
@@ -65,7 +64,7 @@ fun ConferenceItem(
                         .background(MaterialTheme.colorScheme.errorContainer)
                 ) {
                     AsyncImage(
-                        model = conference.image[0].imageUrl,
+                        model = conference.image.url,
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
@@ -73,23 +72,24 @@ fun ConferenceItem(
                             .weight(1f)
                     )
                     TextContainer(
-                        startDate = conference.startDate.split("-").last(),
-                        endDate = conference.endDate.split("-").last(),
+                        startDate = conference.start_date,
+                        endDate = conference.end_date,
                         modifier = Modifier
                             .weight(1f)
                     )
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
-            Row(modifier = Modifier.padding(start = 10.dp)) {
-                conference.category.forEach { it ->
+            Row(modifier = Modifier.padding(start = 5.dp)) {
+                conference.categories.forEach { it ->
                     ElevatedButton(
                         onClick = {},
                         modifier = Modifier
+                            .padding(start = 5.dp)
                             .wrapContentWidth()
                             .height(30.dp)
                     ) {
-                        Text(text = it.categoryName, style = MaterialTheme.typography.bodySmall)
+                        Text(text = it.name, style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }
@@ -108,10 +108,4 @@ fun ConferenceItem(
             Spacer(modifier = Modifier.height(15.dp))
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ConferenceItemPreview() {
-    ConferenceItem(conference = MockData.conferenceData)
 }

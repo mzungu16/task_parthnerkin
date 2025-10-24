@@ -55,6 +55,11 @@ dependencies {
     implementation(libs.image.coil)
     implementation(libs.android.dagger)
     kapt(libs.android.dagger.compiler)
+    implementation(libs.android.gson)
+    implementation(libs.android.retrofit)
+    implementation(libs.android.retrofit.converter)
+    implementation(libs.android.okHttp)
+    implementation(libs.android.okHttp.inter)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

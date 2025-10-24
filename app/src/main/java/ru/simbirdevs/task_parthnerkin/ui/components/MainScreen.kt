@@ -1,5 +1,6 @@
 package ru.simbirdevs.task_parthnerkin.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,8 +37,7 @@ fun MainScreen(
 ) {
 
     val conferenceList by mainScreenViewModel.conferences.collectAsState()
-    val isLoading by mainScreenViewModel.isLoading.collectAsState()
-    val errorMessage by mainScreenViewModel.errorMessage.collectAsState()
+    val groupedList by mainScreenViewModel.groupedList.collectAsState()
 
     Scaffold(topBar = {
         MainScreenTopBar(
@@ -48,30 +48,15 @@ fun MainScreen(
         )
     }
     ) { paddingValues ->
-        Box(modifier = modifier.padding(paddingValues)) {
-            when {
-                isLoading -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
+        LazyColumn(modifier = modifier.padding(paddingValues)) {
 
-                errorMessage != null -> {
-                    Text(
-                        text = errorMessage ?: "Unknown error occurred",
-                        modifier = Modifier.align(Alignment.Center),
-                        color = MaterialTheme.colorScheme.error
-                    )
+            groupedList.forEach { (date, conferenceList) ->
+                item {
+                    ConferenceDateSeparator(Dates.month(date))
                 }
-
-                else -> {
-                    LazyColumn {
-                        items(items = conferenceList) { conference ->
-                            ConferenceDateSeparator(Dates.dateValidation(conference.startDate))
-                            ConferenceItem(conference = conference)
-                            Spacer(modifier = Modifier.height(15.dp))
-                        }
-                    }
+                items(conferenceList) { conference ->
+                    ConferenceItem(conference = conference.conference)
+                    Spacer(modifier = Modifier.height(15.dp))
                 }
             }
         }
