@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias (libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -49,6 +50,17 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.viewModel.compose)
+    implementation(libs.androidx.graphics)
+    implementation(libs.image.coil)
+    implementation(libs.android.dagger)
+    kapt(libs.android.dagger.compiler)
+    implementation(libs.android.gson)
+    implementation(libs.android.retrofit)
+    implementation(libs.android.retrofit.converter)
+    implementation(libs.android.okHttp)
+    implementation(libs.android.okHttp.inter)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
