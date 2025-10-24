@@ -1,12 +1,8 @@
 package ru.simbirdevs.task_parthnerkin.data.repo
 
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.simbirdevs.task_parthnerkin.data.Category
-import ru.simbirdevs.task_parthnerkin.data.ConferenceData
-import ru.simbirdevs.task_parthnerkin.data.ImageData
-import ru.simbirdevs.task_parthnerkin.data.Result
+import ru.simbirdevs.task_parthnerkin.data.retrofit.Result
 import ru.simbirdevs.task_parthnerkin.data.retrofit.RetrofitInt
 import javax.inject.Inject
 import javax.inject.Singleton

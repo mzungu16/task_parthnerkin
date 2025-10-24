@@ -1,4 +1,4 @@
-package ru.simbirdevs.task_parthnerkin.data
+package ru.simbirdevs.task_parthnerkin.data.retrofit
 
 
 data class Root(

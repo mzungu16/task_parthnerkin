@@ -1,6 +1,5 @@
 package ru.simbirdevs.task_parthnerkin.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -8,8 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.simbirdevs.task_parthnerkin.data.ConferenceData
-import ru.simbirdevs.task_parthnerkin.data.Result
+import ru.simbirdevs.task_parthnerkin.data.retrofit.Result
 import ru.simbirdevs.task_parthnerkin.data.repo.ConferenceRepository
 import javax.inject.Inject
 
@@ -17,7 +15,6 @@ class MainScreenViewModel @Inject constructor(
     private val conferenceRepository: ConferenceRepository
 ) : ViewModel() {
     private val _conferences = MutableStateFlow<List<Result>>(emptyList())
-    val conferences: StateFlow<List<Result>> = _conferences.asStateFlow()
 
     private val _groupedList = MutableStateFlow<Map<String, List<Result>>>(emptyMap())
     val groupedList: StateFlow<Map<String, List<Result>>> = _groupedList.asStateFlow()
